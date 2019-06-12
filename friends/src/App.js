@@ -13,7 +13,7 @@ class App extends React.Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response)
+        // console.log(response)
         this.setState({list : response.data })})
       .catch(err => console.log(err));
   }
