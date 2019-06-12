@@ -1,5 +1,6 @@
 import React from 'react';
 import Friend from './Friend';
+import { Link } from 'react-router-dom';
 
 const FriendsList = props => {
     
@@ -13,6 +14,7 @@ const FriendsList = props => {
                 // </div>
                 <Friend key={friend.id} friend={friend} />
             ))}
+            <Link to="/form">Add new Friend</Link>
         </div>
     );
 };
