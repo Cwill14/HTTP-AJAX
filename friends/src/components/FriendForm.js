@@ -1,14 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FriendForm = () => {
+const FriendForm = props => {
     return (
         <div>
             <Link to="/">Back to List</Link>
-            <form>
-                <input type="text" placeholder="name"/>
-                <input type="text" placeholder="age"/>
-                <input type="text" placeholder="email"/>
+            <form onSubmit={props.addNewFriend}>
+                <input 
+                    type="text" 
+                    value={props.name} 
+                    onChange={props.handleChanges} 
+                    name="name" 
+                    placeholder="name" 
+                />
+                <input 
+                    type="text" 
+                    value={props.age} 
+                    onChange={props.handleChanges} 
+                    name="age" 
+                    placeholder="age" 
+                />
+                <input 
+                    type="email" 
+                    value={props.email} 
+                    onChange={props.handleChanges} 
+                    name="email" 
+                    placeholder="email" 
+                />
                 <button type="submit">Add Friend</button>
             </form>
         </div>
