@@ -55,15 +55,24 @@ class App extends React.Component {
   updateFriend = (e, id, friend) => {
     e.preventDefault();    
     axios
-      .put(`http://localhost:5000/friends/${id}`, friend)
-      .then(res => console.log(res))
+      .put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .then(res => {
+        this.setState({list: res.data})
+        this.props.history.push('/')
+      })
       .catch(err => console.log(err))
   }
 
-  // deleteFriend = e => {
-  //   e.preventDefault();    
-  //   axios
-  // }
+  deleteFriend = (e, id) => {
+    e.preventDefault();    
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({list: res.data})
+        this.props.history.push('/')
+      })
+      .catch(err => console.log(err))
+  }
 
   render() {
     return (
@@ -73,6 +82,7 @@ class App extends React.Component {
           <FriendsList 
             {...props} 
             list={this.state.list}
+            deleteFriend={this.deleteFriend}
             />} 
         />
         <Route path="/form" render={props => 
