@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList.js';
 import FriendForm from './components/FriendForm.js';
+import UpdateForm from './components/UpdateForm';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 
@@ -13,10 +14,12 @@ class App extends React.Component {
       name: "",
       age: "",
       email: ""
+    },
+    updatedFriend: {
+      name: "",
+      age: "",
+      email: ""
     }
-    // name: "",
-    // age: "",
-    // email: ""
   }
 
   componentDidMount() {
@@ -33,9 +36,18 @@ class App extends React.Component {
       friend: {
         ...this.state.friend,
         [e.target.name]: e.target.value
+      },
+      updatedFriend: {
+        ...this.state.updatedFriend,
+        [e.target.name]: e.target.value
       }
     })
   }
+
+  // handleUpdate = e => {
+  //   e.preventDefault();
+  //   this.setState  
+  // }
 
   addNewFriend = e => {
     e.preventDefault();    
@@ -70,6 +82,13 @@ class App extends React.Component {
         this.props.history.push('/')
       })
       .catch(err => console.log(err))
+      this.setState({
+        updatedFriend: {
+          name: "",
+          age: "",
+          email: ""
+        }
+      })
   }
 
   deleteFriend = (e, id) => {
@@ -92,7 +111,7 @@ class App extends React.Component {
             {...props} 
             list={this.state.list}
             deleteFriend={this.deleteFriend}
-            updateFriend={this.updateFriend}
+            // updateFriend={this.updateFriend}
             />} 
         />
         <Route path="/form" render={props => 
@@ -100,12 +119,18 @@ class App extends React.Component {
             {...props} 
             handleChanges={this.handleChanges}
             addNewFriend={this.addNewFriend}
+            // updateFriend={props.updateFriend} 
             friend={this.state.friend}
-            // name={this.state.name}
-            // age={this.state.age}
-            // email={this.state.email}
-          />} 
+          />}
         />
+        <Route path={`/update/:id`} render={props =>
+          <UpdateForm 
+            {...props}
+            handleChanges={this.handleChanges}
+            updateFriend={this.updateFriend}
+            updatedFriend={this.state.updatedFriend}
+          />
+        }/>
       </div>
     );
   }

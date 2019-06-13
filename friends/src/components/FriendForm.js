@@ -15,7 +15,7 @@ const FriendForm = props => {
                     required
                 />
                 <input 
-                    type="text" 
+                    type="number" 
                     value={props.friend.age} 
                     onChange={props.handleChanges} 
                     name="age" 
