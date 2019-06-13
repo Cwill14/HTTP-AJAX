@@ -1,7 +1,7 @@
-body {
-  /* background: #333;
-  color: #ddd; */
-}
+/* html, body {
+  background: #333;
+  color: #fff;
+} */
 .friend {
-  border: 1px solid black;
+  border: 1px solid #bbb;
 }

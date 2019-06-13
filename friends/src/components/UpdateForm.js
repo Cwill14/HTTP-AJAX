@@ -3,22 +3,21 @@ import { Link } from 'react-router-dom';
 
 class UpdateForm extends Component {
     
-    // componentDidMount() {
-    //     const id = this.props.match.params.id;
-    // }
-
     render() {
         console.log(this.props);
 
         return (
             <div className="update-container">
+                <h3>Update Friend</h3>
                 <Link to="/"><button>Back to List</button></Link>                
-                <form className="update-form" onSubmit={e => this.props.updateFriend(e, this.props.match.params.id, this.props.updatedFriend)}>
+                <form 
+                    className="update-form" 
+                    onSubmit={e => this.props.updateFriend(e, this.props.match.params.id, this.props.updatedFriend)}>
                     <input
                         type="text"
                         value={this.props.updatedFriend.name}
                         name="name"
-                        placeholder="name"
+                        placeholder="name here"
                         required
                         onChange={this.props.handleChanges}
                     />
@@ -26,7 +25,7 @@ class UpdateForm extends Component {
                         type="number"
                         value={this.props.updatedFriend.age}
                         name="age"
-                        placeholder="age"
+                        placeholder="age here"
                         required
                         onChange={this.props.handleChanges}
                     />
@@ -34,7 +33,7 @@ class UpdateForm extends Component {
                         type="email"
                         value={this.props.updatedFriend.email}
                         name="email"
-                        placeholder="email"
+                        placeholder="email here"
                         required
                         onChange={this.props.handleChanges}
                     />

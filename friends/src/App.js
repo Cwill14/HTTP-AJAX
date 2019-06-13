@@ -44,11 +44,6 @@ class App extends React.Component {
     })
   }
 
-  // handleUpdate = e => {
-  //   e.preventDefault();
-  //   this.setState  
-  // }
-
   addNewFriend = e => {
     e.preventDefault();    
     const newFriend = {
@@ -82,13 +77,13 @@ class App extends React.Component {
         this.props.history.push('/')
       })
       .catch(err => console.log(err))
-      this.setState({
-        updatedFriend: {
-          name: "",
-          age: "",
-          email: ""
-        }
-      })
+    this.setState({
+      updatedFriend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    })
   }
 
   deleteFriend = (e, id) => {
@@ -111,7 +106,6 @@ class App extends React.Component {
             {...props} 
             list={this.state.list}
             deleteFriend={this.deleteFriend}
-            // updateFriend={this.updateFriend}
             />} 
         />
         <Route path="/form" render={props => 
@@ -119,7 +113,6 @@ class App extends React.Component {
             {...props} 
             handleChanges={this.handleChanges}
             addNewFriend={this.addNewFriend}
-            // updateFriend={props.updateFriend} 
             friend={this.state.friend}
           />}
         />

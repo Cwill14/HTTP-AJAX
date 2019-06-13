@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const FriendForm = props => {
     return (
         <div className="form-container">
+            <h3>Add Friend</h3>
             <Link to="/"><button>Back to List</button></Link>
             <form onSubmit={props.addNewFriend}>
                 <input 
@@ -11,7 +12,7 @@ const FriendForm = props => {
                     value={props.friend.name} 
                     onChange={props.handleChanges} 
                     name="name" 
-                    placeholder="name"
+                    placeholder="name here"
                     required
                 />
                 <input 
@@ -19,7 +20,7 @@ const FriendForm = props => {
                     value={props.friend.age} 
                     onChange={props.handleChanges} 
                     name="age" 
-                    placeholder="age"
+                    placeholder="age here"
                     required
                 />
                 <input 
@@ -27,7 +28,7 @@ const FriendForm = props => {
                     value={props.friend.email} 
                     onChange={props.handleChanges} 
                     name="email" 
-                    placeholder="email"
+                    placeholder="email here"
                     required
                 />
                 <button type="submit">Add Friend</button>

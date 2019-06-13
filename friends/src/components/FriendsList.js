@@ -11,7 +11,6 @@ const FriendsList = props => {
                     key={friend.id} 
                     friend={friend} 
                     deleteFriend={props.deleteFriend} 
-                    // updateFriend={props.updateFriend} 
                 />
             ))}
             <Link to="/form"><button>Add new Friend</button></Link>
