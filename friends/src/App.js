@@ -9,9 +9,14 @@ class App extends React.Component {
   
   state ={
     list: [],
-    name: "",
-    age: "",
-    email: ""
+    friend: {
+      name: "",
+      age: "",
+      email: ""
+    }
+    // name: "",
+    // age: "",
+    // email: ""
   }
 
   componentDidMount() {
@@ -24,18 +29,20 @@ class App extends React.Component {
 
   handleChanges = e => {
     e.preventDefault();
-    this.setState(
-      // ...this.state.friend
-      {[e.target.name]: e.target.value}
-    )
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
   addNewFriend = e => {
     e.preventDefault();    
     const newFriend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
+      name: this.state.friend.name,
+      age: this.state.friend.age,
+      email: this.state.friend.email
     }
     axios
       .post('http://localhost:5000/friends', newFriend)
@@ -46,16 +53,18 @@ class App extends React.Component {
       .catch(err => console.log(err))
 
     this.setState({
-      name: "",
-      age: "",
-      email: ""
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
     })
   }
 
   updateFriend = (e, id, friend) => {
     e.preventDefault();    
     axios
-      .put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .put(`http://localhost:5000/friends/${id}`, friend)
       .then(res => {
         this.setState({list: res.data})
         this.props.history.push('/')
@@ -83,6 +92,7 @@ class App extends React.Component {
             {...props} 
             list={this.state.list}
             deleteFriend={this.deleteFriend}
+            updateFriend={this.updateFriend}
             />} 
         />
         <Route path="/form" render={props => 
@@ -90,9 +100,10 @@ class App extends React.Component {
             {...props} 
             handleChanges={this.handleChanges}
             addNewFriend={this.addNewFriend}
-            name={this.state.name}
-            age={this.state.age}
-            email={this.state.email}
+            friend={this.state.friend}
+            // name={this.state.name}
+            // age={this.state.age}
+            // email={this.state.email}
           />} 
         />
       </div>

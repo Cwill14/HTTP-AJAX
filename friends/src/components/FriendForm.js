@@ -8,7 +8,7 @@ const FriendForm = props => {
             <form onSubmit={props.addNewFriend}>
                 <input 
                     type="text" 
-                    value={props.name} 
+                    value={props.friend.name} 
                     onChange={props.handleChanges} 
                     name="name" 
                     placeholder="name"
@@ -16,7 +16,7 @@ const FriendForm = props => {
                 />
                 <input 
                     type="text" 
-                    value={props.age} 
+                    value={props.friend.age} 
                     onChange={props.handleChanges} 
                     name="age" 
                     placeholder="age"
@@ -24,7 +24,7 @@ const FriendForm = props => {
                 />
                 <input 
                     type="email" 
-                    value={props.email} 
+                    value={props.friend.email} 
                     onChange={props.handleChanges} 
                     name="email" 
                     placeholder="email"
