@@ -10,7 +10,7 @@ class App extends React.Component {
   state ={
     list: [],
     name: "",
-    age: 0,
+    age: "",
     email: ""
   }
 
@@ -18,7 +18,6 @@ class App extends React.Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        // console.log(response)
         this.setState({list : response.data })})
       .catch(err => console.log(err));
   }
@@ -26,6 +25,7 @@ class App extends React.Component {
   handleChanges = e => {
     e.preventDefault();
     this.setState(
+      // ...this.state.friend
       {[e.target.name]: e.target.value}
     )
   }
@@ -41,36 +41,48 @@ class App extends React.Component {
       .post('http://localhost:5000/friends', newFriend)
       .then(res => {
         this.setState({list: res.data})
+        this.props.history.push('/')
       })
       .catch(err => console.log(err))
 
     this.setState({
       name: "",
-      age: 0,
+      age: "",
       email: ""
     })
   }
 
+  updateFriend = (e, id, friend) => {
+    e.preventDefault();    
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
+  // deleteFriend = e => {
+  //   e.preventDefault();    
+  //   axios
+  // }
 
   render() {
     return (
       <div className="App">
         <h1>Friends List</h1>
-        {/* <FriendsList list={this.state.list}/> */}
         <Route exact path="/" render={props => 
           <FriendsList 
             {...props} 
             list={this.state.list}
             />} 
         />
-        {/* <FriendForm /> */}
         <Route path="/form" render={props => 
-          <FriendForm {...props} 
-          handleChanges={this.handleChanges}
-          addNewFriend={this.addNewFriend}
-          name={this.state.name}
-          age={this.state.age}
-          email={this.state.email}
+          <FriendForm 
+            {...props} 
+            handleChanges={this.handleChanges}
+            addNewFriend={this.addNewFriend}
+            name={this.state.name}
+            age={this.state.age}
+            email={this.state.email}
           />} 
         />
       </div>
